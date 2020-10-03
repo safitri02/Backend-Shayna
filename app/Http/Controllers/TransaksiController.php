@@ -103,4 +103,19 @@ class TransaksiController extends Controller
 
         return redirect('/transaksi');
     }
+
+    public function status(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:PENDING,SUCCESS,FAILED'
+        ]);
+
+        $status = Transaksi::findorFail($id);
+        $status->transaction_status = $request->status;
+
+        $status->save();
+        
+        return redirect('/transaksi');
+
+    }
 }

@@ -37,20 +37,22 @@
                        <td>  <span class="name">{{$t->address}}</span> </td>
                        <td> <span class="product">{{$t->transaction_total}}</td>
                        <td> 
-                      
                             @if($t->transaction_status = 'PENDING')
-                            <span class="badge badge-warning">
+                                <span class="badge badge-warning">
                             @elseif($t->transaction_status = 'SUCCESS')
-                            <span class="badge badge-success">
+                                <span class="badge badge-success">
                             @elseif($t->transaction_status = 'FAILED')
-                            <span class="badge badge-danger">
+                                <span class="badge badge-danger">
+                            @else
+                                <span>
                             @endif
                             {{$t->transaction_status}}
                             </span>
                        </td>
                        <td>
                        @if($t->transaction_status = 'PENDING')
-                
+                        <a href="/transaksi/{{ $t->id }}/status?status=SUCCESS" class="btn btn-success btn-sm"> <i class="fa fa-check"> </i> </a>
+                        <a href="/transaksi/{{ $t->id }}/status?status=FAILED" class="btn btn-danger btn-sm"> <i class="fa fa-times"> </i> </a>
                        @endif
                            <a href="#mymodal" data-remote="/transaksi/show/{{$t->id}}" class="btn btn-info btn-sm"
                            data-toggle="modal" data-target="#mymodal" data-title="Detail Transaksi {{$t->uuid}}">

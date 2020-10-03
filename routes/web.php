@@ -33,6 +33,7 @@ Route::DELETE('/photo/delete/{id}', 'GaleriController@destroy');
 Route::get('/product/{id}/galery', 'ProductController@galeri');
 
 // Transaksi::resource();
+Route::get('/transaksi/{id}/status', 'TransaksiController@status');
 Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi/show/{id}', 'TransaksiController@show');
 Route::get('/transaksi/edit/{id}', 'TransaksiController@edit');
