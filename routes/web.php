@@ -37,6 +37,7 @@ Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi/show/{id}', 'TransaksiController@show');
 Route::get('/transaksi/edit/{id}', 'TransaksiController@edit');
 Route::PUT('/transaksi/update/{uuid}', 'TransaksiController@update');
+Route::DELETE('/transaksi/delete/{id}', 'TransaksiController@destroy');
 
 
 

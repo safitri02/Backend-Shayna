@@ -59,9 +59,9 @@
                            <a href="/transaksi/edit/{{$t->id}}" class="btn btn-primary btn-sm">
                             <i class="fa fa-pencil"> </i> </a>
 
-                           <form action="" method="post" class="d-inline">
+                           <form action="/transaksi/delete/{{ $t->id }}" method="post" class="d-inline">
                            @csrf
-                           @method('delete')
+                           @method('DELETE')
                            <button class="btn btn-danger btn-sm"> Delete
                            <i class="fa fa-trash"> </i>
                            </button>
