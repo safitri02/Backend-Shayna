@@ -11,27 +11,26 @@ use App\TransaksiDetail;
 
 class CheckoutController extends Controller
 {
-    public function checkout(CheckoutRequest $request)
+     public function checkout(CheckoutRequest $request)
     {
         $data = $request->except('transaction_details');
-        $data['uuid'] = 'RTX' . mt_rand(10000,99999) . mt_rand(100,999);
-        
-        $transaksi = Transaksi::create($data);
+        $data['uuid'] = 'TRX' . mt_rand(10000,99999) . mt_rand(100,999);
 
-        foreach($request->transaction_details as $product)
+        $transaction = TransaksiDetail::create($data);
+
+        foreach ($request->transaction_details as $product)
         {
-            $details[] = new TransaksiDetail([
-                'transactions_id' => $transaksi->id,
+            $detail[] = new TransaksiDetail([
+                'transactions_id' => $transaction->id,
                 'products_id' => $product,
             ]);
 
             Product::find($product)->decrement('quantity');
-            //Untuk mengurangi qty
         }
 
-        $transaksi->detail()->saveMany($details);
+        $transaction->detail()->saveMany($details);
 
-        return ResponseFormatter::success($transaksi);
+        return ResponseFormatter::success($transaction);
 
     }
 }

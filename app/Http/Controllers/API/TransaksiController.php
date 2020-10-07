@@ -8,15 +8,15 @@ use App\Transaksi;
 
 class TransaksiController extends Controller
 {
-    public function get(Request $request, $id)
+     public function get(Request $request, $id)
     {
         $product = Transaksi::with(['detail.product'])->find($id);
 
         if($product)
-            return ResponseFormatter::success($product, 'Data transaksi berhasil di ambil');
-
-        else{
-            return ResponseFormatter::error($product, 'Data transaksi gagal di ambil', 404);
-        }
+            return ResponseFormatter::success($product, 'Data transaksi berhasil diambil');
+        else
+            return ResponseFormatter::error(null, 'Data transaksi tidak ada', 404);
     }
 }
+
+
